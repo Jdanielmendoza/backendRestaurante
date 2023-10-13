@@ -1,22 +1,7 @@
-import express from "express"
-import { pool } from "./config/databaseConnection.js";
-const app = express(); 
+import app from "./app.js"; 
 
-app.get('/', (req,res) =>{
-    res.send("hello world")
-})
+app.listen(process.env.PORT || 3000, ()=> {
+  let message = "Server is running on port " + process.env.PORT ; 
+  console.log(message); 
 
-const getUsers=async ()=>{
-   try {
-    const res=await pool.query('select nombre from usuario')
-    console.log(res.rows)
-    pool.end();
-   } catch (error) {
-    console.log(error)
-   }
-  }
-
-  
-getUsers();
-
-app.listen(3000, ()=>{console.log("server is running on port 3000") })
+} ); 
