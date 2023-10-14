@@ -24,7 +24,7 @@ export const postUsuario = async (req, res) => {
         }
         
         await registrarUsuarios(ci, nombre, telefono, fechaDeNacimiento, correo, sexo, 
-            await encryptarContraseña(contraseña), id_rol, imagen).then(()=>res.status(200).send('Usuario registrado satisfactoriamente'))
+            await encryptarContraseña(contraseña), id_rol, imagen).then(()=>res.status(200).send('Usuario registrado con exito!'))
       
     } catch (error) {
         console.log(error)

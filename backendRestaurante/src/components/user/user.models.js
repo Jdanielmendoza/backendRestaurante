@@ -57,3 +57,29 @@ export const validarUsuariosExistentes = async (ci) => {
         return false;
     }
 };
+
+export const obtenerUsuarioPorCarnetDeIdentidad = async(ci) =>{
+    try {
+        const client = await pool.connect();
+        const res = await pool.query("SELECT * FROM usuario WHERE ci=$1", [ci]);
+        client.release();
+        return res.rows ;
+    } catch (error) {
+        console.error(error);
+        return error;
+    }
+}
+
+export const obtenerUsuarioPorSuNombre = async(nombre) =>{
+    try {
+        const client = await pool.connect();
+        const res = await pool.query("SELECT * FROM usuario WHERE nombre=$1", [nombre]);
+        client.release();
+        return res.rows[0] ;
+    } catch (error) {
+        console.error(error);
+        return error;
+    }
+}
+
+
