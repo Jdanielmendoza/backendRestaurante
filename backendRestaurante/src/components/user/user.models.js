@@ -1,3 +1,4 @@
+
 import {pool} from "../../config/databaseConnection.js"; 
 
 
@@ -31,3 +32,28 @@ export const validarCorreosUnicos = async (correo) => {
     }
 };
 
+export const cambiarContraseña=async (ci,nuevaContraseña)=>{
+    const client= await pool.connect();
+    const res= await pool.query("UPDATE USUARIO SET contraseña=$1 WHERE ci=$2",[nuevaContraseña,ci]);
+    client.release();
+    return res
+}
+
+export const constraseñaActual=async(ci)=>{
+    const client= await pool.connect();
+    const resp= await pool.query("Select contraseña from usuario where ci=$1",[ci])
+    client.release();
+    return resp.rows[0].contraseña;
+}
+
+export const validarUsuariosExistentes = async (ci) => {
+    try {
+        const client = await pool.connect();
+        const res = await pool.query("SELECT ci FROM usuario WHERE ci=$1", [ci]);
+        client.release();
+        return res.rows.length > 0;
+    } catch (error) {
+        console.error(error);
+        return false;
+    }
+};
