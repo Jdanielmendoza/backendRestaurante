@@ -1,6 +1,7 @@
 import {Router} from "express"
-import { getCajeros } from "./user.controllers.js";
+import { getCajeros, postUsuario } from "./user.controllers.js";
 const routerUser = Router() ; 
+import { validateCreate } from "../../validators/user.js";
 
 
 routerUser.get('/admin', (req,res) =>{
@@ -12,6 +13,9 @@ routerUser.get('/cook', (req,res) =>{
 });
 
 routerUser.get('/cajero', getCajeros);
+
+routerUser.post('/registro',validateCreate,postUsuario)
+
 
 
 export default routerUser; 
