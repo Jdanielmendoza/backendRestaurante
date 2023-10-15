@@ -15,7 +15,7 @@ routerUser.get('/cook', (req,res) =>{
 routerUser.get('/cajero', getCajeros);
 
 routerUser.post('/registro',validateCreate,postUsuario)
-routerUser.patch('/registro',patchContraseña)
+routerUser.patch('/cambiarContraseña',patchContraseña)
 
 
 
