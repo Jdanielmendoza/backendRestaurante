@@ -38,7 +38,6 @@ export const patchContraseña=async(req,res)=>{
     try {
         const {ci,antiguaContraseña,nuevaContraseña} =req.body;
         if(!await validarUsuariosExistentes(ci)){
-           
             res.status(403).send(`El usuario con el ci : ${ci} no existe  `)
             return
         }
