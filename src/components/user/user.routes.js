@@ -12,7 +12,7 @@ routerUser.get('/cook', (req,res) =>{
     res.send("cook");
 });
 
-routerUser.get('/cajero', (req,res)=>{res.send("cajero")});
+routerUser.get('/cajero', getCajeros);
 
 routerUser.post('/registro',validateCreate,postUsuario)
 routerUser.patch('/cambiarClave',patchContraseña)
