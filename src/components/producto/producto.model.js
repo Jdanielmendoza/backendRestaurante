@@ -4,7 +4,7 @@ const getProducts = async () => {
   const client = await pool.connect();
 
   try {
-    const res = await pool.query("select * from producto");
+    const res = await pool.query("select producto.*,categoria.nombre from producto, categoria where producto.id_categoria = categoria.id ");
     client.release();
     return res.rows;
   } catch (error) {
