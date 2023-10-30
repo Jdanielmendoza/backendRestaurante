@@ -44,7 +44,7 @@ try {
 
 export const deleteCategoria=async(req,res)=>{
   try {
-    const {id}=req.body;
+    const {id}=req.params;
     await eliminarCategoria(id);
     res.status(200).json({message:"Categoria eliminada"})
   } catch (error) {
