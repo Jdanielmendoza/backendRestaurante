@@ -73,7 +73,7 @@ export const obtenerUsuarioPorCarnetDeIdentidad = async(ci) =>{
 export const obtenerUsuarioPorSuNombre = async(nombre) =>{
     try {
         const client = await pool.connect();
-        const res = await pool.query("SELECT * FROM usuario WHERE nombre=$1", [nombre]);
+        const res = await pool.query("SELECT usuario.*, rol.cargo from usuario,rol where usuario.id_rol = rol.id and usuario.nombre=$1", [nombre]);
         client.release();
         return res.rows[0] ;
     } catch (error) {

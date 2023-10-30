@@ -33,7 +33,8 @@ export const loginUser = async (req, res) => {
                 nombre:result.nombre,
                 telefono:result.telefono, 
                 id_rol : result.id_rol, 
-                imagen : result.imagen
+                imagen : result.imagen,
+                cargo: result.cargo,
                 } 
             });
 

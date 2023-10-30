@@ -44,7 +44,7 @@ try {
 
 export const deleteMesa=async(req,res)=>{
   try {
-    const {id}=req.body;
+    const {id}=req.params;
     await eliminarMesa(id);
     res.status(200).json({message:"Mesa eliminada"})
   } catch (error) {

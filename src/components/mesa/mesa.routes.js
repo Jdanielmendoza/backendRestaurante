@@ -8,8 +8,8 @@ import { validateCreateMesa } from "../../validators/mesa.js";
 
 routerUser.get('/', getMesa);
 routerUser.post('/',validateCreateMesa,postMesa)
-routerUser.put('/',validateCreateMesa,putMesa)
-routerUser.delete('/',validateCreateMesa, deleteMesa);
+routerUser.put('/',putMesa)
+routerUser.delete('/:id', deleteMesa);
 
 
 export default routerUser; 
