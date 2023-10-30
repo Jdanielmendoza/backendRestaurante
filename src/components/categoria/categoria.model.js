@@ -1,12 +1,9 @@
 import { pool } from "../../config/databaseConnection.js";
 
-export const crearCategoria = async (id, nombre, descripcion, id_categoria) => {
+export const crearCategoria=async(id,nombre,descripcion,id_categoria)=>{
+  const client= await pool.connect();
   try {
-    const client = await pool.connect();
-    const res = await pool.query(
-      "INSERT INTO CATEGORIA(id,nombre,descripcion,id_categoria) values($1,$2,$3,$4)",
-      [id, nombre, descripcion, id_categoria]
-    );
+    const res= await pool.query("INSERT INTO CATEGORIA(id,nombre,descripcion,id_categoria) values($1,$2,$3,$4)",[id,nombre,descripcion,id_categoria]);
     client.release();
     return res;
   } catch (error) {
@@ -16,8 +13,9 @@ export const crearCategoria = async (id, nombre, descripcion, id_categoria) => {
 };
 
 export const obtenerCategoria = async () => {
+  const client = await pool.connect();
   try {
-    const client = await pool.connect();
+    
     const res = await pool.query(
       "SELECT CATEGORIA_HIJO.*, CATEGORIA_PADRE.nombre AS categoria_padre FROM CATEGORIA AS CATEGORIA_HIJO LEFT JOIN CATEGORIA AS CATEGORIA_PADRE ON CATEGORIA_HIJO.id_categoria =   CATEGORIA_PADRE.id;"
     );
@@ -29,10 +27,13 @@ export const obtenerCategoria = async () => {
   }
 };
 
-export const eliminarCategoria = async (id) => {
+
+
+export const eliminarCategoria=async(id)=>{
+  const client=await pool.connect();
   try {
-    const client = await pool.connect();
-    const res = await pool.query("DELETE FROM CATEGORIA WHERE id=$1", [id]);
+  
+    const res=await pool.query("DELETE FROM CATEGORIA WHERE id=$1",[id]);
     client.release();
     return res;
   } catch (error) {
@@ -41,13 +42,11 @@ export const eliminarCategoria = async (id) => {
   }
 };
 
-export const actualizarCategoria = async (id, nombre, descripcion) => {
+export const actualizarCategoria=async(id,nombre,descripcion)=>{
+  const client=await pool.connect();
   try {
-    const client = await pool.connect();
-    const res = await pool.query(
-      "UPDATE CATEGORIA SET nombre=$1,descripcion=$2  WHERE id=$3",
-      [nombre, descripcion, id]
-    );
+    
+    const res= await pool.query("UPDATE CATEGORIA SET nombre=$1,descripcion=$2  WHERE id=$3",[nombre,descripcion,id]);
     client.release();
     return res;
   } catch (error) {
