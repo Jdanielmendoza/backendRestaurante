@@ -42,11 +42,11 @@ export const eliminarCategoria=async(id)=>{
   }
 };
 
-export const actualizarCategoria=async(id,nombre,descripcion)=>{
+export const actualizarCategoria=async(id,nombre,descripcion,id_categoria)=>{
   const client=await pool.connect();
   try {
     
-    const res= await pool.query("UPDATE CATEGORIA SET nombre=$1,descripcion=$2  WHERE id=$3",[nombre,descripcion,id]);
+    const res= await pool.query("UPDATE CATEGORIA SET nombre=$1,descripcion=$2,id_categoria = $3  WHERE id=$4",[nombre,descripcion,id_categoria,id]);
     client.release();
     return res;
   } catch (error) {
