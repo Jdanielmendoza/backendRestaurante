@@ -8,8 +8,11 @@ const errorServidor={
 export const postCategoria=async(req,res)=>{
   
 try {
-  const {id,nombre,descripcion}=req.body
-  await crearCategoria(id,nombre,descripcion);
+  const {id,nombre,descripcion,id_categoria}=req.body
+  if(!nombre || !descripcion){
+    return res.status(403).json({message:"No se admiten nulos"})
+ }
+  await crearCategoria(id,nombre,descripcion,id_categoria);
   res.status(200).json({message:"Categoria creada!"});
 } catch (error) {
   res.status(500).json(errorServidor);
@@ -35,6 +38,9 @@ export const getCategoria=async(req,res)=>{
 export const putCategoria=async(req,res)=>{
 try {
   const {id,nombre,descripcion}=req.body;
+  if(!nombre || !descripcion){
+     return res.status(403).json({message:"No se admiten nulos"})
+  }
   const mesa=await actualizarCategoria(id,nombre,descripcion);
   res.status(200).json({message:"Categoria actualizada exitosamente"})
 } catch (error) {
