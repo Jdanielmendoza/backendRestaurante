@@ -9,12 +9,14 @@ export const postCategoria=async(req,res)=>{
   
 try {
   const {id,nombre,descripcion,id_categoria}=req.body
-  if(!nombre || !descripcion){
-    return res.status(403).json({message:"No se admiten nulos"})
- }
-  await crearCategoria(id,nombre,descripcion,id_categoria);
+  if (!nombre.trim() || !descripcion.trim()) {
+    return res.status(400).send({ error: 'nombre y descripcion son requeridos' });
+  }
+    await crearCategoria(id,nombre,descripcion,id_categoria);
+
   res.status(200).json({message:"Categoria creada!"});
 } catch (error) {
+  console.log(error)
   res.status(500).json(errorServidor);
 }
 }
