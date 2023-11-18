@@ -7,7 +7,7 @@ import pagoRouter from "../components/pago/pago.routes.js";
 
 const router = Router(); 
 router.use('/mesa',routerTable);
-router.use('/user', routerUser); 
+router.use('/usuario', routerUser); 
 router.use('/auth', authRouter);
 router.use('/categoria',routerCategory);
 ; 

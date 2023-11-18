@@ -1,5 +1,5 @@
 import {Router} from "express"
-import { getCajeros, postUsuario,patchContraseña } from "./user.controllers.js";
+import { getCajeros, postUsuario,patchContraseña, getUsuarios, actualizarUsuario, eliminarUsuario } from "./user.controllers.js";
 const routerUser = Router() ; 
 import { validateCreate } from "../../validators/user.js";
 
@@ -14,9 +14,12 @@ routerUser.get('/cook', (req,res) =>{
 
 routerUser.get('/cajero', getCajeros);
 
+
+routerUser.get('/', getUsuarios)
+routerUser.put('/',actualizarUsuario)
 routerUser.post('/registro',validateCreate,postUsuario)
 routerUser.patch('/cambiarClave',patchContraseña)
-
+routerUser.delete('/:carnet',eliminarUsuario )
 
 
 export default routerUser; 
