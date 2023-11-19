@@ -8,7 +8,7 @@ import pedidoRouter from "../components/pedido/pedido.routes.js";
 
 const router = Router(); 
 router.use('/mesa',routerTable);
-router.use('/user', routerUser); 
+router.use('/usuario', routerUser); 
 router.use('/auth', authRouter);
 router.use('/categoria',routerCategory);
 router.use('/producto', routerProducto);
