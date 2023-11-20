@@ -12,11 +12,10 @@ try {
   if (nombre.trim().length == 0 || descripcion.trim().length == 0) {
     return res.status(400).send({ error: 'nombre y descripcion son requeridos' });
   }
-    await crearCategoria(id,nombre,descripcion,id_categoria);
-
+  await crearCategoria(id,nombre,descripcion,id_categoria);
   res.status(200).json({message:"Categoria creada!"});
 } catch (error) {
-  console.log(error)
+
   res.status(500).json(errorServidor);
 }
 }
