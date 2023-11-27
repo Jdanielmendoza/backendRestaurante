@@ -17,7 +17,7 @@ routerUser.get('/cajero', getCajeros);
 
 routerUser.get('/', getUsuarios)
 routerUser.put('/',actualizarUsuario)
-routerUser.post('/registro',validateCreate,postUsuario)
+routerUser.post('/registro',postUsuario)
 routerUser.patch('/cambiarClave',patchContraseña)
 routerUser.delete('/:carnet',eliminarUsuario )
 
