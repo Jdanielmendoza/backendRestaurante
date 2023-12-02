@@ -36,9 +36,9 @@ export const putMesa=async(req,res)=>{
 try {
   const {id,nro,nroSillas}=req.body;
   const mesa=await actualizarMesa(id,nro,nroSillas);
-  res.status(200).json({message:"Mesa actualizada exitosamente"})
+  res.status(200).json({message:"Mesa actualizada exitosamente", mesa})
 } catch (error) {
-  res.status(500).json(errorServidor);
+  res.status(500).json("errorServidor");
 }
 }
 
