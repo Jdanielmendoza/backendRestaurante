@@ -8,7 +8,8 @@ pedidoRouter.get('/:idPedido',pedidoController.getDetallePedidos);
 
 pedidoRouter.post('/',pedidoController.createPedido);
 
-pedidoRouter.patch('/:idPedido',pedidoController.updatePedido);
+pedidoRouter.put('/:idPedido',pedidoController.updatePedido);
+pedidoRouter.put('/change/:idPedido',pedidoController.actualizarDatosPedido);
 
 pedidoRouter.delete('/:idPedido',pedidoController.deletePedido);
 
