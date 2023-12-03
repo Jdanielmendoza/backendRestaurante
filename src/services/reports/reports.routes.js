@@ -6,6 +6,8 @@ const routerReports = Router() ;
 
 routerReports.get('/ingresoporventas', reportsController.IngresoPorVentas);
 routerReports.get('/ventasSemanales',reportsController.ventasSemanales);
+routerReports.get('/cantidadProductosSalida',reportsController.cantProductosSalida);
+routerReports.get('/productosSalidaSemana',reportsController.productoSalidaSemanal);
 /*routerReports.get('/cantidadProductosSalida') */
 
 

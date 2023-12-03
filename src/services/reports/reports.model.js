@@ -16,7 +16,7 @@ async function getIngresoPorVentas() {
 async function getVentasDeLaSemana(){ 
     const client = await pool.connect() ; 
     try {
-        const res = await pool.query("SELECT to_char(DATE(fecha), 'Day') as dia, COUNT(*) as cantidad FROM pedido WHERE fecha >= DATE_TRUNC('week', CURRENT_DATE) + INTERVAL '0 day' AND estado = 'terminado' GROUP BY dia ORDER BY dia; "); 
+        const res = await pool.query("SELECT * from obtenercantidaddeventassemanales() "); 
         client.release(); 
         return res.rows; 
 
@@ -25,7 +25,39 @@ async function getVentasDeLaSemana(){
         return error ; 
     }
 }
+
+async function getCantidadProductosSalida(){ 
+  const client = await pool.connect() ; 
+  try {
+      const res = await pool.query("SELECT sum(total_pedido) from obtenercantidaddeproductosdesalidasemanales()"); 
+      client.release(); 
+      return res.rows; 
+
+  } catch (error) {
+      client.release() ; 
+      return error ; 
+  }
+}
+
+
+async function cantidadProductosSalidaSemanal(){ 
+  const client = await pool.connect() ; 
+  try {
+      const res = await pool.query("SELECT * from obtenercantidaddeproductosdesalidasemanales()"); 
+      client.release(); 
+      return res.rows; 
+
+  } catch (error) {
+      client.release() ; 
+      return error ; 
+  }
+}
+
+
+
 export const reportsModel = {
     getIngresoPorVentas,
-    getVentasDeLaSemana
+    getVentasDeLaSemana,
+    getCantidadProductosSalida,
+    cantidadProductosSalidaSemanal
 }
